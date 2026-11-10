@@ -23,7 +23,8 @@ export default defineAppConfig({
   apps: [
     { name: 'Runarks', kind: 'Governed access to production databases', logo: 'runarks', to: 'https://runarks.com/' },
     { name: 'EasyShoot', kind: 'Screenshot app for macOS · coming soon', logo: 'easyshoot', to: 'https://easyshoot.haythamasalama.me/' },
-    { name: 'WhatsApp Business Monitor', kind: 'Dashboard for WhatsApp Business', logo: 'whatsapp-manager', to: 'https://github.com/haythamasalama/whatsapp-business-monitor' }
+    { name: 'WhatsApp Business Monitor', kind: 'Dashboard for WhatsApp Business', logo: 'whatsapp-manager', to: 'https://github.com/haythamasalama/whatsapp-business-monitor' },
+    { name: 'PR Sift', kind: 'Chrome extension for GitHub pull requests', logo: 'pr-sift', to: 'https://haythamasalama.github.io/pr-sift/' }
   ],
 
   /** Smaller pages, linked from the footer. */

@@ -1,0 +1,20 @@
+name: PR Sift
+kind: Chrome extension for GitHub pull requests
+description: 'Filter a large pull request down to the files that matter, track what you have viewed, and keep private line notes to send to Claude Code, Codex, Cursor or ChatGPT. Your code stays in your browser.'
+mark:
+  logo: pr-sift
+platforms:
+- Chrome
+- Edge
+- Brave
+- Arc
+- Dia
+- Opera
+- Vivaldi
+since: Nov 2026
+license: PolyForm Shield 1.0.0
+repo: https://github.com/haythamasalama/pr-sift
+links:
+- label: Website
+  to: https://haythamasalama.github.io/pr-sift/
+order: 3
