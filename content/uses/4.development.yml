@@ -1,0 +1,33 @@
+title: Development & monitoring
+order: 4
+items:
+- name: Laravel Herd
+  url: https://herd.laravel.com/
+  note: Local PHP & Laravel sites
+  mark:
+    logo: herd
+  home: 11
+- name: Cloudflare
+  url: https://www.cloudflare.com/
+  note: Domains, DNS & redirects
+  mark:
+    icon: simple-icons:cloudflare
+  home: 12
+- name: Vercel
+  url: https://vercel.com/
+  note: Hosting for this site
+  mark:
+    icon: simple-icons:vercel
+  home: 13
+- name: PR Sift
+  url: https://github.com/haythamasalama/pr-sift
+  note: Reviewing pull requests
+  mark:
+    logo: pr-sift
+  home: 1
+- name: WhatsApp Business Monitor
+  url: https://github.com/Haythamasalama/whatsapp-business-monitor
+  note: WhatsApp Business dashboard
+  mark:
+    logo: whatsapp-manager
+  home: 3

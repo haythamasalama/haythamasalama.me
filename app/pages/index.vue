@@ -14,14 +14,16 @@
   });
 
   const { data } = await useAsyncData('home', async () => {
-    const [projects, pages, technologies, articles] = await Promise.all([
+    const [projects, pages, technologies, articles, uses] = await Promise.all([
       queryCollection('projects').all(),
       queryCollection('projectPages').select('path').all(),
       queryCollection('technologies').where('home', '=', true).order('order', 'ASC').all(),
-      queryCollection('articles').order('date', 'DESC').limit(3).all()
+      queryCollection('articles').order('date', 'DESC').limit(3).all(),
+      queryCollection('uses').order('order', 'ASC').all()
     ]);
 
     const paths = new Set(pages.map(page => page.path));
+    const allTools = uses.flatMap(section => section.items);
 
     return {
       // Each links to its own page when it has one, otherwise to the list.
@@ -30,7 +32,9 @@
         .sort((a, b) => a.highlight!.order - b.highlight!.order)
         .map(project => ({ ...project, to: paths.has(`/${project.stem}`) ? `/${project.stem}` : '/work' })),
       stack: technologies,
-      articles
+      articles,
+      tools: allTools.filter(item => item.home).sort((a, b) => a.home! - b.home!),
+      moreTools: allTools.filter(item => !item.home).length
     };
   });
 
@@ -43,6 +47,22 @@
     openSourceActivity.value && { value: `${openSourceActivity.value.totals.repositories}`, label: 'repositories' },
     openSourceReach.value && { value: formatCount(openSourceReach.value), label: 'stars on those projects' }
   ].filter(stat => !!stat));
+
+  function placeTip (event: Event) {
+    const item = event.currentTarget as HTMLElement;
+    const tip = item.querySelector<HTMLElement>('.tool-tip');
+    const row = item.parentElement?.getBoundingClientRect();
+
+    if (!tip || !row) {
+      return;
+    }
+
+    const box = item.getBoundingClientRect();
+    const center = box.left + box.width / 2;
+    const half = tip.offsetWidth / 2;
+
+    item.dataset.tip = center - half < row.left ? 'start' : center + half > row.right ? 'end' : '';
+  }
 
   // The same groups as the About page, with a few tools from each.
   const stackRows = computed(() => skillGroups
@@ -275,6 +295,57 @@
           </li>
         </ul>
       </div>
+    </section>
+
+    <section v-if="data?.tools.length" aria-labelledby="uses" class="pt-12">
+      <div class="flex items-baseline justify-between gap-4">
+        <SectionTitle id="uses">
+          What I use
+        </SectionTitle>
+        <GoLink to="/uses">
+          All uses
+        </GoLink>
+      </div>
+      <ul class="mt-2 grid grid-cols-[repeat(auto-fill,44px)] justify-between gap-2">
+        <li
+          v-for="tool in data.tools"
+          :key="tool.name"
+          class="tool relative"
+          @mouseenter="placeTip"
+          @focusin="placeTip"
+        >
+          <NuxtLink
+            :to="tool.url ?? '/uses'"
+            :target="tool.url ? '_blank' : undefined"
+            :aria-label="`${tool.name}: ${tool.note}`"
+            class="block rounded-[11px] transition-colors hover:*:border-chip hover:*:text-fg"
+          >
+            <LogoTile :mark="tool.mark" :size="44" />
+          </NuxtLink>
+          <span class="tool-tip" aria-hidden="true">
+            <span class="font-medium text-fg">{{ tool.name }}</span>
+            <span class="text-faint">{{ tool.note }}</span>
+          </span>
+        </li>
+        <li
+          v-if="data.moreTools"
+          class="tool relative"
+          @mouseenter="placeTip"
+          @focusin="placeTip"
+        >
+          <NuxtLink
+            to="/uses"
+            :aria-label="`${data.moreTools} more tools on the Uses page`"
+            class="flex size-11 items-center justify-center rounded-[11px] border border-dashed border-edge font-mono text-[13px] text-soft transition-colors hover:border-chip hover:bg-surface hover:text-fg"
+          >
+            +{{ data.moreTools }}
+          </NuxtLink>
+          <span class="tool-tip" aria-hidden="true">
+            <span class="font-medium text-fg">{{ data.moreTools }} more</span>
+            <span class="text-faint">See everything I use</span>
+          </span>
+        </li>
+      </ul>
     </section>
   </div>
 </template>

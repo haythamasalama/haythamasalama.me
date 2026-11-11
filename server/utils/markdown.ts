@@ -71,6 +71,8 @@ export function plainMarkdown (raw: string) {
 
         return `![${props.alt}](${src})${caption ? `\n\n*${caption}*` : ''}\n`;
       }
+      case 'project-video':
+        return `[Video: ${props.alt}](${props.src})${caption ? `\n\n*${caption}*` : ''}\n`;
       case 'feature-grid': {
         const items = [...inner.matchAll(/title: (.+)\n\s+text: (.+)/g)]
           .map(([, title, text]) => `- **${quote(title!.trim())}**: ${quote(text!.trim())}`);
@@ -130,10 +132,11 @@ async function skills (event: H3Event, homeOnly = false) {
 
 async function home (event: H3Event) {
   const { socials, apps } = useAppConfig();
-  const [projects, articles, profile] = await Promise.all([
+  const [projects, articles, profile, uses] = await Promise.all([
     projectsWithPages(event),
     queryCollection(event, 'articles').order('date', 'DESC').limit(3).all(),
-    queryCollection(event, 'profile').first()
+    queryCollection(event, 'profile').first(),
+    queryCollection(event, 'uses').order('order', 'ASC').all()
   ]);
 
   const work = projects
@@ -153,6 +156,12 @@ async function home (event: H3Event) {
     articles.map(article => link(article.title, article.path, article.description)).join('\n'),
     '## My apps',
     apps.map((app: { name: string; to: string; kind: string }) => link(app.name, app.to, app.kind)).join('\n'),
+    '## What I use',
+    uses.flatMap(section => section.items.filter(item => item.home))
+      .sort((a, b) => a.home! - b.home!)
+      .map(item => item.url ? link(item.name, item.url, item.note) : `- ${item.name}: ${item.note}`)
+      .join('\n'),
+    `Full setup: ${markOf('/uses')}`,
     '## Elsewhere',
     socials.map((social: { label: string; to: string }) => link(social.label, social.to)).join('\n')
   ]);
@@ -265,10 +274,10 @@ async function work (event: H3Event) {
     description: 'What Haytham A. Salama has built and shipped, from a physics app in high school to fintech and logistics platforms today, plus free apps of his own.'
   }, [
     '## Apps',
-    'Free apps I build and maintain.',
-    appList.map(appCard).join('\n\n'),
+    'Apps I build and maintain.',
+    [...list.filter(project => project.product).map(card), ...appList.map(appCard)].join('\n\n'),
     '## Projects',
-    list.map(card).join('\n\n')
+    list.filter(project => !project.product).map(card).join('\n\n')
   ]);
 }
 
@@ -404,7 +413,7 @@ async function uses (event: H3Event) {
   return document({
     path: '/uses',
     title: 'Uses',
-    description: 'The hardware and software Haytham A. Salama uses every day: editors, terminal, databases, planning and design tools.'
+    description: 'The hardware and software Haytham A. Salama uses every day: editors, AI, development, databases, planning and design tools.'
   }, [
     'My own setup: the hardware and software I open every day. Recommendations live on Tools.',
     ...sections.map(section => `## ${section.title}\n\n${section.items

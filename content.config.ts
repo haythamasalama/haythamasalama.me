@@ -106,6 +106,8 @@ export default defineContentConfig({
         mark,
         links: z.array(link).default([]),
         order: z.number(),
+        /** My own product: listed first under Apps on /work instead of under Projects. */
+        product: z.boolean().default(false),
         /** Shown in "Selected work" on the home page when set. */
         highlight: z.object({
           title: z.string(),
@@ -295,7 +297,9 @@ export default defineContentConfig({
           /** Its official page, opened in a new tab. */
           url: z.string().url().optional(),
           /** The colour theme I run it with, for editors and terminals. */
-          theme: z.string().optional()
+          theme: z.string().optional(),
+          /** Its place in the row of logos under "My apps" on the home page; left out, it isn't there. */
+          home: z.number().int().positive().optional()
         }))
       })
     })

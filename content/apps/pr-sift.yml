@@ -1,0 +1,17 @@
+name: PR Sift
+kind: Chrome extension for pull request reviews
+description: 'Review large GitHub pull requests without the noise: show only the files you care about, mark what you have read and keep private notes for your AI assistant. Free, with no account and no server.'
+mark:
+  logo: pr-sift
+platforms:
+- Chrome
+- Edge, Brave, Arc, Dia
+since: Nov 2026
+license: PolyForm Shield
+repo: https://github.com/haythamasalama/pr-sift
+links:
+- label: Website
+  to: https://haythamasalama.github.io/pr-sift/
+- label: User guide
+  to: https://github.com/haythamasalama/pr-sift/blob/main/docs/USAGE.md
+order: 3

@@ -40,28 +40,49 @@
     entity: {
       '@type': 'ItemList',
       'itemListElement': [
-        ...(data.value?.apps ?? []).map(app => ({ name: app.name, url: app.page ?? `/work#${app.anchor}` })),
-        ...(data.value?.projects ?? []).map(project => ({ name: project.title, url: project.page ?? `/work#${project.anchor}` }))
-      ].map((item, index) => ({ '@type': 'ListItem', 'position': index + 1, 'name': item.name, 'url': `${site.url}${item.url}` }))
+        ...(data.value?.projects ?? []).filter(project => project.product),
+        ...(data.value?.apps ?? []),
+        ...(data.value?.projects ?? []).filter(project => !project.product)
+      ].map((item, index) => ({
+        '@type': 'ListItem',
+        'position': index + 1,
+        'name': 'title' in item ? item.title : item.name,
+        'url': `${site.url}${item.page ?? `/work#${item.anchor}`}`
+      }))
     }
   });
 
+  const products = computed(() => data.value?.projects.filter(project => project.product) ?? []);
   const apps = computed(() => data.value?.apps ?? []);
-  const caseStudies = computed(() => data.value?.projects.filter(project => project.page) ?? []);
-  const earlier = computed(() => data.value?.projects.filter(project => !project.page) ?? []);
+  const caseStudies = computed(() => data.value?.projects.filter(project => project.page && !project.product) ?? []);
+  const earlier = computed(() => data.value?.projects.filter(project => !project.page && !project.product) ?? []);
 </script>
 
 <template>
   <div>
     <PageHeader title="Work">
-      <p>Free apps I build and maintain, and the systems I’ve built for the teams that run on them.</p>
+      <p>Apps I build and maintain, and the systems I’ve built for the teams that run on them.</p>
     </PageHeader>
 
-    <section v-if="apps.length" aria-labelledby="apps" class="pt-12">
+    <section v-if="products.length || apps.length" aria-labelledby="apps" class="pt-12">
       <SectionTitle id="apps" class="mb-4">
         Apps
       </SectionTitle>
       <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <li
+          v-for="project in products"
+          :id="project.anchor"
+          :key="project.id"
+          class="scroll-mt-6"
+        >
+          <ContentCard
+            :to="(project.page ?? project.links?.[0]?.to)!"
+            :external="!project.page"
+            :mark="project.mark"
+            :title="project.name"
+            :meta="project.summary"
+          />
+        </li>
         <li
           v-for="app in apps"
           :id="app.anchor"

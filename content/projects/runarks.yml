@@ -8,6 +8,7 @@ links:
 - label: runarks.com
   to: https://runarks.com/
 order: 1
+product: true
 highlight:
   title: 'Runarks · Governed database access'
   description: 'My own product: every query against production is reviewed, approved, run once and logged, with sensitive fields masked.'

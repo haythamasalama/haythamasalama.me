@@ -1,5 +1,5 @@
 ---
-description: 'EasyShoot is my screenshot app for macOS, coming soon to the Mac App Store: capture, mark up, blur and frame screenshots in one window, with Arabic right-to-left text, no account and nothing uploaded.'
+description: 'EasyShoot is my screenshot app for macOS, free on the Mac App Store: capture, mark up, blur and frame screenshots in one window, with Arabic right-to-left text, no account and nothing uploaded.'
 ---
 
 ## Overview
@@ -8,7 +8,7 @@ description: 'EasyShoot is my screenshot app for macOS, coming soon to the Mac A
 One capture, marked up with a dashed box, numbered steps, a curved arrow and a label.
 ::
 
-EasyShoot is a screenshot app for macOS 14 and later. It lives in the menu bar: one shortcut captures an area, a window or the full screen, and the editor marks it up, hides private details and frames it before it's copied or saved. I started it in October 2026, and it is coming soon to the Mac App Store.
+EasyShoot is a screenshot app for macOS 14 and later. It lives in the menu bar: one shortcut captures an area, a window or the full screen, and the editor marks it up, hides private details and frames it before it's copied or saved. I started it in October 2026 and released it on the Mac App Store in November 2026.
 
 ## The problem
 
@@ -38,7 +38,7 @@ Capture, mark-up and framing happen in one window, and nothing leaves the Mac.
 - Defined the product, its features and its privacy rule: nothing is uploaded.
 - Designed the brand, the app icon and the interface on Apple's macOS 27 design kit, with Liquid Glass on macOS 26 and later.
 - Built the app with a coding agent: I set the scope and the design, and reviewed every change before it shipped.
-- Prepared it for the Mac App Store: a sandboxed build, ScreenCaptureKit capture and the store listing.
+- Shipped it on the Mac App Store: a sandboxed build, ScreenCaptureKit capture and the store listing.
 - Built the website and its user guide in five languages.
 
 ## What it offers
