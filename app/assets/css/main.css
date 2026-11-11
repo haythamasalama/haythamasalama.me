@@ -297,6 +297,50 @@
   }
 }
 
+/* What I use on the home page. Closed tips use `display: none` so they never widen a phone screen. */
+.tool-tip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  z-index: 10;
+  display: none;
+  flex-direction: column;
+  gap: 1px;
+  translate: -50% 0;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--raised);
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: tip-in 0.15s ease-out;
+}
+
+.tool[data-tip='start'] > .tool-tip {
+  left: 0;
+  translate: 0 0;
+}
+
+.tool[data-tip='end'] > .tool-tip {
+  right: 0;
+  left: auto;
+  translate: 0 0;
+}
+
+.tool:hover > .tool-tip,
+.tool:has(:focus-visible) > .tool-tip {
+  display: flex;
+}
+
+@keyframes tip-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
 /* Signature draw animation */
 .signature path {
   stroke: var(--fg);
@@ -344,6 +388,10 @@
 
   .marquee-copy {
     display: none;
+  }
+
+  .tool-tip {
+    animation: none;
   }
 
   .marquee-fade {

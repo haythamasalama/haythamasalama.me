@@ -9,5 +9,9 @@ platforms:
 since: Oct 2026
 license: MIT
 repo: https://github.com/Haythamasalama/whatsapp-business-monitor
-links: []
+links:
+- label: Website
+  to: https://wbm.haythamasalama.me/
+- label: User guide
+  to: https://wbm.haythamasalama.me/docs/accounts-and-numbers/
 order: 2

@@ -6,6 +6,12 @@ items:
   note: Thinking, writing & code
   mark:
     icon: simple-icons:claude
+- name: Claude Code
+  url: https://claude.com/product/claude-code
+  note: Coding with agents
+  mark:
+    icon: simple-icons:claude
+  home: 4
 - name: Claude Design
   url: https://claude.ai/design
   note: Prototypes & visuals
@@ -16,3 +22,16 @@ items:
   note: Research & Google apps
   mark:
     icon: simple-icons:googlegemini
+  home: 7
+- name: Cursor
+  url: https://cursor.com/
+  note: AI code editor
+  mark:
+    icon: simple-icons:cursor
+  home: 5
+- name: ChatGPT
+  url: https://chatgpt.com/
+  note: Everyday questions
+  mark:
+    icon: simple-icons:openai
+  home: 6

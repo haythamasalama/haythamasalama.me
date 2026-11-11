@@ -22,8 +22,9 @@ export default defineAppConfig({
   /** My own apps, on the home page. */
   apps: [
     { name: 'Runarks', kind: 'Governed access to production databases', logo: 'runarks', to: 'https://runarks.com/' },
-    { name: 'EasyShoot', kind: 'Screenshot app for macOS · coming soon', logo: 'easyshoot', to: 'https://easyshoot.haythamasalama.me/' },
-    { name: 'WhatsApp Business Monitor', kind: 'Dashboard for WhatsApp Business', logo: 'whatsapp-manager', to: 'https://github.com/haythamasalama/whatsapp-business-monitor' }
+    { name: 'EasyShoot', kind: 'Screenshot app for macOS', logo: 'easyshoot', to: 'https://apps.apple.com/app/easyshoot-screenshot-markup/id6829547113' },
+    { name: 'WhatsApp Business Monitor', kind: 'Dashboard for WhatsApp Business', logo: 'whatsapp-manager', to: 'https://wbm.haythamasalama.me/' },
+    { name: 'PR Sift', kind: 'Chrome extension for pull request reviews', logo: 'pr-sift', to: 'https://haythamasalama.github.io/pr-sift/' }
   ],
 
   /** Smaller pages, linked from the footer. */

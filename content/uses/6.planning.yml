@@ -1,16 +1,18 @@
-title: Planning
-order: 5
+title: Planning & design
+order: 6
 items:
 - name: EasyShoot
-  url: https://easyshoot.haythamasalama.me/
-  note: My app for annotated screenshots
+  url: https://easyshoot.app/
+  note: Annotated screenshots
   mark:
     logo: easyshoot
+  home: 2
 - name: Notion
   url: https://www.notion.com/
   note: Notes & docs
   mark:
     icon: simple-icons:notion
+  home: 15
 - name: Google Docs
   url: https://docs.google.com/
   note: Shared writing
@@ -21,6 +23,12 @@ items:
   note: Handwritten notes
   mark:
     icon: lucide:pen-line
+- name: Figma
+  url: https://www.figma.com/
+  note: Interface design
+  mark:
+    icon: simple-icons:figma
+  home: 14
 - name: Excalidraw
   url: https://excalidraw.com/
   note: Sketches & diagrams

@@ -7,12 +7,20 @@ items:
   mark:
     icon: simple-icons:phpstorm
   theme: GitHub Dark
+  home: 8
 - name: VS Code
   url: https://code.visualstudio.com/
   note: Front end & quick edits
   mark:
     icon: simple-icons:visualstudiocode
   theme: One Dark Pro Night Flat
+  home: 9
+- name: Xcode
+  url: https://developer.apple.com/xcode/
+  note: Swift & Mac apps
+  mark:
+    icon: simple-icons:xcode
+  home: 10
 - name: IntelliJ IDEA
   url: https://www.jetbrains.com/idea/
   note: Java
